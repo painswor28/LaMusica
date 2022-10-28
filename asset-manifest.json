@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/cse30246/LaM%C3%BAsica/static/css/main.073c9b0a.css",
+    "main.js": "/cse30246/LaM%C3%BAsica/static/js/main.b9492e23.js",
+    "static/js/787.cda612ba.chunk.js": "/cse30246/LaM%C3%BAsica/static/js/787.cda612ba.chunk.js",
+    "static/media/logo.svg": "/cse30246/LaM%C3%BAsica/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/cse30246/LaM%C3%BAsica/index.html",
+    "main.073c9b0a.css.map": "/cse30246/LaM%C3%BAsica/static/css/main.073c9b0a.css.map",
+    "main.b9492e23.js.map": "/cse30246/LaM%C3%BAsica/static/js/main.b9492e23.js.map",
+    "787.cda612ba.chunk.js.map": "/cse30246/LaM%C3%BAsica/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.b9492e23.js"
+  ]
+}

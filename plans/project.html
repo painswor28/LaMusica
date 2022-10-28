@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>La Música Project</title>
+</head>
+
+<body>
+    <h1>La Música Project</h1>
+    <p>
+        <a href='http://db8.cse.nd.edu/cse30246/LaM%C3%BAsica/devplan.html'>
+            <button type="button">View Our Development plan!</button>
+        </a>
+    </p>
+
+    Team Members:
+    <ul>
+        <li>Peter Ainsworth - painswor@nd.edu</li>
+        <li>Michael Bsales - mbsales@nd.edu</li>
+        <li>Dominic Diederich - ddieder2@nd.edu</li>
+        <li>Ryan O'Halloran - rohallo2@nd.edu</li>
+    </ul>
+
+    <h3>Project Description</h3>
+    <p>Music disc jockeys and other remix artists specialize in the layering of different songs and tracks to create
+        popular remixes and to build 'hype' through music.</p>
+
+    <p>While there are many songs that mix well together, many do not. Here lies the creative process. Artists take
+        many technical factors into consideration when mixing several songs.</p>
+
+    These include:
+    <ul>
+        <li>Tempo</li>
+        <li>Key</li>
+        <li>Chord Progression</li>
+        <li>Genre</li>
+    </ul>
+
+    <p>To aid artists in their creation process, we are creating a tool that allows users to find songs based on
+        these properties.</p>
+
+    <h3>Usefulness</h3>
+    <p>This application will enable artists to find music in a given key, tempo, and genre to mix well with an already
+        existing project or idea. Through this we hope to facilitate the creative process.</p>
+    <hX>There are several existing applications similar to ours:</hX>
+    <ol>
+        <li>
+            <a href="https://tunebat.com/">Tunebat</a>
+            <ul>
+                <li>Allows users to search for songs to find bpm and key.</li>
+                <li>Users can find recommended songs based on an inputted song.</li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://open.spotify.com/">Spotify</a>
+            <ul>
+                <li>Allows users to find recommended music based on current playlists, liked songs, or previously
+                    listened to
+                    music.</li>
+                <li>Has an advanced API for searching music and facilitating the above bullet.</li>
+                <li>Lacks features to find music based on key and tempo.</li>
+            </ul>
+        </li>
+        <li>
+            <a href="https://apps.apple.com/us/app/discz-discover-share-music/id1521888879">Discz</a>
+            <ul>
+                <li>Allows users to upload a current playlist and display song recommendedations based on playlist</li>
+                <li>Users can swipe on recommended songs wether they like the song or not.</li>
+            </ul>
+        </li>
+    </ol>
+    <p><strong>Our goal is to improve on these applications by generating a list of similar recommended songs that mix
+            well (similar tempo, key, chord progression) with an inputted song. This list will be sorted based on latest
+            popularity, and have options to listen to songs mixed automatically.</strong></p>
+    <h3>Realness - Data</h3>
+    <p>We will gather data from one or more of the following sources:</p>
+    <ul>
+        <li>Scraping data from Tunebat or Spotify using an API.</li>
+        <li>The million song dataset found <a href='http://millionsongdataset.com/'>here</a> (published 2011).</li>
+    </ul>
+    <h3>Functionality</h3>
+    <ul>
+        <li><strong>Basic Functions:</strong></li>
+        <ol>
+            <li>Users can add songs and metadata information that are not currently in the database.</li>
+            <li>Users can search by key, tempo, release year, and other properties to find recommended songs.</li>
+        </ol>
+        <li><strong>Advanced Functions</strong></li>
+        <ol>
+            <li>Users can sort searched results by current song popularity. Popularity will be obtained from sites like
+                spotify and apple music top charts.</li>
+            <li>Users can auto generate playlists where songs auto fade in and fade out with each other.</li>
+        </ol>
+    </ul>
+
+    <h3>ER Diagram</h3>
+    <img src="./Project_ER_Diagram_Final_2.jpg" width="500" height="600">
+
+
+</body>
+
+</html>
