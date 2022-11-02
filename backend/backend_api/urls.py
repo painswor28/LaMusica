@@ -3,7 +3,9 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
-    path('songs', SongListApiView.as_view()),
-    path('songs/<int:id>/', SongDetailApiView.as_view()),
-    path('tracks', trackListApiView.as_view()),
+    path('songs/', SongList.as_view(), name='song-list'),
+    path('artists/', ArtistList.as_view(), name='artist-list'),
+    path('songs/<int:pk>/', SongDetail.as_view(), name='song-detail'),
+    path('tracks', TrackList.as_view(), name='track-list'),
+    path('tracks/<str:pk>/', TrackDetail.as_view(), name='track-detail')
 ]

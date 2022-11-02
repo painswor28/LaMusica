@@ -1,12 +1,21 @@
 from rest_framework import serializers
 from .models import *
 
-class songSerializer(serializers.ModelSerializer):
+class SongSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Songs
-        fields = ("id", "artist", "songKey", "tempo")
+        fields = '__all__'
 
-class trackSerializer(serializers.ModelSerializer):
+class ArtistSerializer(serializers.ModelSerializer):
+
+    songs = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
+    class Meta:
+        model = Artist
+        fields = '__all__'
+
+class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ("uri", "name", "id", "danceability", "energy", "loudness", "speechiness", "acousticness", "instrumental", "liveness", "valance", "tempo", "duration_ms", "time_signature", "camelot_key", "popularity", "explicit", "preview_url", "spotify_url")
+        fields = '__all__'
