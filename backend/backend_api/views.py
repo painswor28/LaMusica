@@ -10,17 +10,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import *
 from .serializers import *
 
-class SongList(generics.ListCreateAPIView):
-    queryset = Songs.objects.all()
-    serializer_class = SongSerializer
-    name = 'song-list'
-    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    filter_fields = ['artists__name']
-
-class SongDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Songs.objects.all()
-    serializer_class = SongSerializer
-    name = 'song-detail'
 
 class ArtistList(generics.ListCreateAPIView):
     queryset = Artist.objects.all()
@@ -28,13 +17,33 @@ class ArtistList(generics.ListCreateAPIView):
     name = 'artist-list'
 
 class TrackList(generics.ListCreateAPIView):
-    queryset = Track.objects.all()
+    queryset = Track.objects.all().order_by('-popularity').values()
     serializer_class = TrackSerializer
     name = 'track-list'
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name']
 
+
 class TrackDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Track.objects.all()
     serializer_class = TrackSerializer
     name = 'song-detail'
+
+class GenreList(generics.ListCreateAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    name = 'genre-list'
+
+class PlaylistList(generics.ListCreateAPIView):
+    queryset = Playlist.objects.all().order_by('-num_followers').values()
+    serializer_class = PlaylistSerializer
+    name = 'playlist-list'
+
+class AlbumList(generics.ListCreateAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+    name = 'album-list'
+
+
+
+
