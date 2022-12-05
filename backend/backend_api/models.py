@@ -19,7 +19,7 @@ class Artist(models.Model):
     link = models.CharField(max_length=150, null=True)
     image = models.CharField(max_length=150, null=True)
     popularity = models.FloatField()
-    #genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre)
 
     class Meta:
         db_table = 'backend_api_artist'
@@ -31,7 +31,7 @@ class Album(models.Model):
     link = models.CharField(max_length=150)
     cover_image = models.CharField(max_length=150)
     release_date = models.DateField()
-    #artists = models.ManyToManyField(Artist)
+    artists = models.ManyToManyField(Artist)
 
     class Meta:
         db_table = 'backend_api_album'
@@ -55,11 +55,11 @@ class Track(models.Model):
     time_signature = models.FloatField()
     camelot_key = models.CharField(max_length=3)
     popularity = models.FloatField()
-    explicit = models.IntegerField()
+    explicit = models.BooleanField(default=False)
     preview_url = models.CharField(max_length=250, blank=True, null=True)
     spotify_url = models.CharField(max_length=250)
-    #album = models.ForeignKey(Album, models.DO_NOTHING)
-    #artists = models.ManyToManyField(Artist)
+    album = models.ForeignKey(Album, models.DO_NOTHING)
+    artists = models.ManyToManyField(Artist)
 
     class Meta:
         db_table = 'backend_api_track'
@@ -68,7 +68,7 @@ class Playlist(models.Model):
     pid = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=150)
     num_followers = models.IntegerField()
-    #tracks = models.ManyToManyField(Track)
+    tracks = models.ManyToManyField(Track)
 
     class Meta:
         db_table = 'backend_api_playlist'

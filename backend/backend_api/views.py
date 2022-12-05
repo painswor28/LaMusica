@@ -17,7 +17,7 @@ class ArtistList(generics.ListCreateAPIView):
     name = 'artist-list'
 
 class TrackList(generics.ListCreateAPIView):
-    queryset = Track.objects.all().order_by('-popularity').values()
+    queryset = Track.objects.all()
     serializer_class = TrackSerializer
     name = 'track-list'
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
@@ -45,5 +45,11 @@ class AlbumList(generics.ListCreateAPIView):
     name = 'album-list'
 
 
+class TrackResults(generics.ListAPIView):
+    queryset = Track.objects.all().order_by('-popularity')
+    serializer_class = TrackSerializer
+    name = 'track-list'
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['name']
 
 

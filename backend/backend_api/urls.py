@@ -8,5 +8,6 @@ urlpatterns = [
     path('albums/', AlbumList.as_view(), name='album-list'),
     path('artists/', ArtistList.as_view(), name='artist-list'),
     path('genres/', GenreList.as_view(), name='genre-list'),
-    path('playlist/', PlaylistList.as_view(), name='playlist-list'),
+    path('playlists/', PlaylistList.as_view(), name='playlist-list'),
+    path('results/', TrackResults.as_view(), name='track-results'),
 ]
