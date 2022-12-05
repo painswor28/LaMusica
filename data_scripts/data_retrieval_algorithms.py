@@ -220,7 +220,7 @@ def get_playlist_tracks(playlist):
 
 def clean_playlist(playlist, tracks):
     return {
-        "pid": playlist["pid"],
+        #"pid": playlist["pid"],
         "name": playlist["name"],
         "num_followers": playlist["num_followers"],
         "tracks": tracks,
