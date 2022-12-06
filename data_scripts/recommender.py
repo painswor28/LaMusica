@@ -3,6 +3,7 @@ import sys
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from data_retrieval_algorithms import *
+from random import randint
 
 # spotipy credentials
 cid = "325f1fd79d3442cda063aaa9b573df59"
@@ -14,14 +15,18 @@ client_credentials_manager = SpotifyClientCredentials(
 
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager, requests_timeout=10, retries=10)
 
+# returns a list of 'limit' recommended tracks based on a track_uri 
 def recommender(track_uri, limit=25):
-    # 
+    # get recommended tracks
     recommended_tracks =  sp.recommendations(seed_tracks=track_uri, limit=limit)['tracks']
-    uris = [track['uri'] for track in recommended_tracks]
-    loaddata(uris)
-    print("entering recursion")
-    for uri in uris:
-        print(f"recommender({uri})")
-        recommender([uri])
+    recommended_uris = [track['uri'] for track in recommended_tracks]
+    #loaddata(recommended_uris)
+    return recommended_uris
 
-recommender(["spotify:track:0EdOXJSlR6cpMLHmVlTz4p"], limit=50)
+def data_ingestor(track_uri, limit=25):
+    recommended_uris = recommender(track_uri=track_uri)
+    loaddata(recommended_uris)
+    new_seed = recommended_uris[randint(0, 24)]
+    data_ingestor(new_seed)
+
+data_ingestor(["spotify:track:3s7MCdXyWmwjdcWh7GWXas"], limit=50)
