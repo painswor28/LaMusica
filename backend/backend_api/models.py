@@ -6,7 +6,6 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
 class Genre(models.Model):
     name = models.CharField(primary_key=True, max_length=100)
 
@@ -65,10 +64,34 @@ class Track(models.Model):
         db_table = 'backend_api_track'
 
 class Playlist(models.Model):
-    pid = models.IntegerField(primary_key=True)
+    pid = models.AutoField(primary_key=True)
+    uri = models.CharField(blank=True, max_length=40)
     name = models.CharField(max_length=150)
     num_followers = models.IntegerField()
     tracks = models.ManyToManyField(Track)
 
     class Meta:
         db_table = 'backend_api_playlist'
+
+
+class Priority(Track):
+    queue=models.IntegerField()
+    similar_track = models.ManyToManyField("self", through='Similar',
+                                           symmetrical=False,
+                                           related_name='from_uri+')
+    class Meta:
+        db_table= 'backend_api_priority'
+
+class Similar(models.Model):
+    from_uri = models.ForeignKey(Priority, related_name='from_uri', on_delete=models.DO_NOTHING ) 
+    to_uri  = models.ForeignKey(Priority, related_name='to_uri', on_delete= models.DO_NOTHING )
+    cam_dance = models.FloatField()
+    cam_dance_energy = models.FloatField()
+    cam_dance_energy_valence = models.FloatField() 
+    cam_dance_energy_valence_acoustic = models.FloatField()
+    all_dist=models.FloatField()
+
+    class Meta:
+        db_table = 'backend_api_similar'
+
+

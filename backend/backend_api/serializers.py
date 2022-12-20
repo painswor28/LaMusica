@@ -45,9 +45,21 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 class ResultSerializer(serializers.ModelSerializer):
 
-    album = serializers.PrimaryKeyRelatedField(read_only=True)
-    artists = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    album = AlbumSerializer(read_only=True)
+    artists = serializers.SlugRelatedField(many=True, read_only=True, slug_field="name")
 
     class Meta:
         model = Track
         fields = '__all__'
+
+
+class RecommendationSerializer(serializers.Serializer):
+
+    fields = '__all__'
+
+    def to_representation(self, instance):
+        # Convert the data to a serializable format
+        return {
+        # Use the `fields` attribute of the serializer to get the list of fields to serialize
+        field_name: getattr(instance, field_name) for field_name in self.fields
+        }
