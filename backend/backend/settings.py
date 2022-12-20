@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend_api.apps.BackendApiConfig',
     'django_filters',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ REST_FRAMEWORK = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 100,
+    'PAGE_SIZE': 10,
 }
 
 TEMPLATES = [
@@ -92,9 +93,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'painswor',
-        'USER': 'painswor',
-        'PASSWORD': 'pwpwpwpw',
+        'NAME': 'rohallo2',
+        'USER': 'rohallo2',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '3306',
     }

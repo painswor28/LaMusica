@@ -6,7 +6,6 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
 class Genre(models.Model):
     name = models.CharField(primary_key=True, max_length=100)
 
@@ -19,7 +18,7 @@ class Artist(models.Model):
     link = models.CharField(max_length=150, null=True)
     image = models.CharField(max_length=150, null=True)
     popularity = models.FloatField()
-    #genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre)
 
     class Meta:
         db_table = 'backend_api_artist'
@@ -31,7 +30,7 @@ class Album(models.Model):
     link = models.CharField(max_length=150)
     cover_image = models.CharField(max_length=150)
     release_date = models.DateField()
-    #artists = models.ManyToManyField(Artist)
+    artists = models.ManyToManyField(Artist)
 
     class Meta:
         db_table = 'backend_api_album'
@@ -55,20 +54,44 @@ class Track(models.Model):
     time_signature = models.FloatField()
     camelot_key = models.CharField(max_length=3)
     popularity = models.FloatField()
-    explicit = models.IntegerField()
+    explicit = models.BooleanField(default=False)
     preview_url = models.CharField(max_length=250, blank=True, null=True)
     spotify_url = models.CharField(max_length=250)
-    #album = models.ForeignKey(Album, models.DO_NOTHING)
-    #artists = models.ManyToManyField(Artist)
+    album = models.ForeignKey(Album, models.DO_NOTHING)
+    artists = models.ManyToManyField(Artist)
 
     class Meta:
         db_table = 'backend_api_track'
 
 class Playlist(models.Model):
-    pid = models.IntegerField(primary_key=True)
+    pid = models.AutoField(primary_key=True)
+    uri = models.CharField(blank=True, max_length=40)
     name = models.CharField(max_length=150)
     num_followers = models.IntegerField()
-    #tracks = models.ManyToManyField(Track)
+    tracks = models.ManyToManyField(Track)
 
     class Meta:
         db_table = 'backend_api_playlist'
+
+
+class Priority(Track):
+    queue=models.IntegerField()
+    similar_track = models.ManyToManyField("self", through='Similar',
+                                           symmetrical=False,
+                                           related_name='from_uri+')
+    class Meta:
+        db_table= 'backend_api_priority'
+
+class Similar(models.Model):
+    from_uri = models.ForeignKey(Priority, related_name='from_uri', on_delete=models.DO_NOTHING ) 
+    to_uri  = models.ForeignKey(Priority, related_name='to_uri', on_delete= models.DO_NOTHING )
+    cam_dance = models.FloatField()
+    cam_dance_energy = models.FloatField()
+    cam_dance_energy_valence = models.FloatField() 
+    cam_dance_energy_valence_acoustic = models.FloatField()
+    all_dist=models.FloatField()
+
+    class Meta:
+        db_table = 'backend_api_similar'
+
+
